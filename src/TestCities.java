@@ -28,7 +28,9 @@ public class TestCities {
         cities[18] = new City(794, 346);
         cities[19] = new City(621, 27);
     }
-
+    public City[] getCities(){
+        return getCities();
+    }
 
 
 }
