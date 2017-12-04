@@ -14,11 +14,12 @@ public class Chromosome {
         }
     }
 
-    public void calcCost() {
+    public int calcCost() {
         int total = 0;
         for (int i = 0; i < c.length - 1; i++) {
             total += c[0].distanceTo(c[1]);
         }
+        return total;
     }
 
     public City[] mate(City[] city) {
