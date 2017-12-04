@@ -29,7 +29,7 @@ public class TestCities {
         cities[19] = new City(621, 27);
     }
     public City[] getCities(){
-        return getCities();
+        return cities;
     }
 
 

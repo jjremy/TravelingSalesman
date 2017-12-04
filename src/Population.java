@@ -11,9 +11,9 @@ public class Population {
 
 
     public Population(int size){
+        City[] cities = test.getCities();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                City[] cities = test.getCities();
                 double wam = cities[i].distanceTo(cities[j]);
                 distances[i][j]= wam;
             }
@@ -49,6 +49,14 @@ public class Population {
         chromosomes.set(chromosomes.size(),chromosomes.get(1));
         chromosomes.set(chromosomes.size()-1,chromosomes.get(0));
 
+    }
+
+    public int calcCost() {
+        int cost = 0;
+        for (int i = 0; i < chromosomes.size(); i++) {
+            cost += chromosomes.get(i).calcCost();
+        }
+        return cost;
     }
     public void runGen(){
         this.sort();
