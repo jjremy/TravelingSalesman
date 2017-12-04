@@ -50,10 +50,15 @@ public class Population {
         chromosomes.set(chromosomes.size()-1,chromosomes.get(0));
 
     }
+    public void runGen(){
+        this.sort();
+        this.mate();
+        this.fill();
+        this.mutate();    }
 }
 
 
 
 
 
-}
+
