@@ -3,8 +3,7 @@
  */
 public class Main {
     public static void main(String[] args) {
-        TestCities t = new TestCities();
-        Population p = new Population(t.getCities().length);
+        Population p = new Population(10);
         int score1 = 0;
         int score2 = 0;
         int dif = score1 -score2;
