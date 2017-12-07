@@ -12,6 +12,7 @@ public class Population {
 
     public Population(int size){
         City[] cities = test.getCities();
+        distances = new double[cities.length][cities.length];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 double wam = cities[i].distanceTo(cities[j]);
@@ -26,7 +27,7 @@ public class Population {
     public void fill() {
         while (this.chromosomes.size() < this.size) {
             if (this.chromosomes.size() < this.size / 3) {
-                this.chromosomes.add(new Chromosome(null));
+                this.chromosomes.add(new Chromosome(test.getCities()));
             } else {
                 this.mate();
             }
