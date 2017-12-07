@@ -4,32 +4,37 @@ import java.util.ArrayList;
  * Created by student on 12/4/17.
  */
 public class Population {
-    private double[][] distances;
+    public static double[][] distances;
     TestCities test = new TestCities();
     private ArrayList<Chromosome> chromosomes;
     private int size;
+    private int cityLength;
 
 
     public Population(int size){
         City[] cities = test.getCities();
-        distances = new double[cities.length][cities.length];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        cityLength = cities.length;
+        distances = new double[cityLength][cityLength];
+        for (int i = 0; i < cityLength; i++) {
+            for (int j = 0; j < cityLength; j++) {
                 double wam = cities[i].distanceTo(cities[j]);
                 distances[i][j]= wam;
             }
         }
         chromosomes = new ArrayList<>();
         this.size = size;
+        System.out.println("before fill");
         this.fill();
+        System.out.println("after");
 
     }
     public void fill() {
         while (this.chromosomes.size() < this.size) {
             if (this.chromosomes.size() < this.size / 3) {
-                this.chromosomes.add(new Chromosome(test.getCities()));
+                this.chromosomes.add(new Chromosome(cityLength));
+                //this.mate();
             } else {
-                this.mate();
+                this.chromosomes.add(new Chromosome(cityLength));
             }
         }
     }
@@ -47,8 +52,8 @@ public class Population {
     }
 
     public void mate(){
-        chromosomes.set(chromosomes.size(),chromosomes.get(1));
-        chromosomes.set(chromosomes.size()-1,chromosomes.get(0));
+        chromosomes.set(chromosomes.size()-1,chromosomes.get(1));
+        chromosomes.set(chromosomes.size()-2,chromosomes.get(0));
 
     }
 

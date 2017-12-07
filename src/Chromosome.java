@@ -21,6 +21,8 @@ public class Chromosome {
 
         }
         public Chromosome(int length){
+            city = new City[test.getCities().length];
+            city = test.getCities();
             c = new int[length];
             for (int i = 0; i < city.length; i++) {
                 int a = (int) (Math.random() * 20);
@@ -36,7 +38,7 @@ public class Chromosome {
     public int calcCost() {
         int total = 0;
         for (int i = 0; i < c.length - 1; i++) {
-            total += city[c[0]].distanceTo(city[c[1]]);
+            total += Population.distances[c[i]][c[i+1]];
         }
         return total;
     }
