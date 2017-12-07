@@ -18,14 +18,14 @@ public class Population {
         return chromosomes;
     }
 
-    public Population(int size){
+    public Population(int size) {
         City[] cities = test.getCities();
         cityLength = cities.length;
         distances = new double[cityLength][cityLength];
         for (int i = 0; i < cityLength; i++) {
             for (int j = 0; j < cityLength; j++) {
                 double wam = cities[i].distanceTo(cities[j]);
-                distances[i][j]= wam;
+                distances[i][j] = wam;
             }
         }
         chromosomes = new ArrayList<>();
@@ -35,6 +35,7 @@ public class Population {
 //        System.out.println("after");
 
     }
+
     public void fill() {
         while (this.chromosomes.size() < this.size) {
             if (this.chromosomes.size() < this.size / 3) {
@@ -46,22 +47,24 @@ public class Population {
         }
     }
 
-    public void mutate(){
-        for (int i = 1; i < chromosomes.size(); i++) {
-            int doMutate = (int)(Math.random() * 10);
-            if (doMutate >= 6) {
-                chromosomes.get(i).mutate();
-            }
+    public void mutate() {
+        for (int i = chromosomes.size()-1; i > chromosomes.size()/2; i--) {
+            //int doMutate = (int) (Math.random() * 10);
+            //if (doMutate >= 3) {
+                int[] c = chromosomes.get(i).mutate();
+                Chromosome chrom = new Chromosome(c);
+                chromosomes.set(chromosomes.size()-i,chrom);
+           // }
         }
     }
-    public void sort(){
+
+    public void sort() {
         chromosomes.sort((o1, o2) -> o2.calcCost() - o1.calcCost());
     }
 
-    public void mate(){
-        chromosomes.set(chromosomes.size()-1,chromosomes.get(1));
-        chromosomes.set(chromosomes.size()-2,chromosomes.get(0));
-
+    public void mate() {
+        chromosomes.set(chromosomes.size() - 1, chromosomes.get(1));
+        chromosomes.set(chromosomes.size() - 2, chromosomes.get(0));
     }
     public void kill(){
         int killRate = chromosomes.size()/2;
@@ -75,11 +78,15 @@ public class Population {
              chromosomes.get(i).calcCost();
         }
     }
-    public void runGen(){
+
+
+    public void runGen() {
         this.sort();
-        //this.mate();
-        this.fill();
-        this.mutate();    }
+//        this.kill();
+//        this.mate();
+//        this.fill();
+        this.mutate();
+    }
 }
 
 
