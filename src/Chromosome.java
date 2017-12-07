@@ -5,6 +5,7 @@ public class Chromosome {
     private int[] c;
     private City[] city;
     TestCities test = new TestCities();
+    private int cost = -1;
 
     public Chromosome(City[] cities) {
             city = new City[test.getCities().length];
@@ -36,10 +37,14 @@ public class Chromosome {
 
 
     public int calcCost() {
+        if(cost != -1){
+            return cost;
+        }
         int total = 0;
         for (int i = 0; i < c.length - 1; i++) {
             total += Population.distances[c[i]][c[i+1]];
         }
+        cost = total;
         return total;
     }
 

@@ -10,6 +10,13 @@ public class Population {
     private int size;
     private int cityLength;
 
+    public int getSize() {
+        return size;
+    }
+
+    public ArrayList<Chromosome> getChromosomes() {
+        return chromosomes;
+    }
 
     public Population(int size){
         City[] cities = test.getCities();
@@ -23,16 +30,16 @@ public class Population {
         }
         chromosomes = new ArrayList<>();
         this.size = size;
-        System.out.println("before fill");
+//        System.out.println("before fill");
         this.fill();
-        System.out.println("after");
+//        System.out.println("after");
 
     }
     public void fill() {
         while (this.chromosomes.size() < this.size) {
             if (this.chromosomes.size() < this.size / 3) {
                 this.chromosomes.add(new Chromosome(cityLength));
-                //this.mate();
+               // this.mate();
             } else {
                 this.chromosomes.add(new Chromosome(cityLength));
             }
@@ -56,17 +63,21 @@ public class Population {
         chromosomes.set(chromosomes.size()-2,chromosomes.get(0));
 
     }
-
-    public int calcCost() {
-        int cost = 0;
-        for (int i = 0; i < chromosomes.size(); i++) {
-            cost += chromosomes.get(i).calcCost();
+    public void kill(){
+        int killRate = chromosomes.size()/2;
+        for (int i = 0; i < killRate; i++) {
+            chromosomes.remove(i);
         }
-        return cost;
+    }
+
+    public void calcCost() {
+        for (int i = 0; i < chromosomes.size(); i++) {
+             chromosomes.get(i).calcCost();
+        }
     }
     public void runGen(){
         this.sort();
-        this.mate();
+        //this.mate();
         this.fill();
         this.mutate();    }
 }
