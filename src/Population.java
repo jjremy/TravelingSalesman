@@ -57,6 +57,17 @@ public class Population {
            // }
         }
     }
+    public void mutate2() {
+        for (int i = chromosomes.size()-1; i > chromosomes.size()/2; i--) {
+            //int doMutate = (int) (Math.random() * 10);
+            //if (doMutate >= 3) {
+            int[] c = chromosomes.get(i).mutate2();
+            Chromosome chrom = new Chromosome(c);
+            chromosomes.set(chromosomes.size()-i,chrom);
+            // }
+        }
+    }
+
 
     public void sort() {
         chromosomes.sort((o1, o2) -> o2.calcCost() - o1.calcCost());
@@ -86,6 +97,8 @@ public class Population {
 //        this.mate();
 //        this.fill();
         this.mutate();
+        this.sort();
+        this.mutate2();
     }
 }
 

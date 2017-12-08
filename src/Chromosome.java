@@ -58,5 +58,27 @@ public class Chromosome {
         c[pivot] = c[pivot2];
         c[pivot2] = temp;
         return c;
+
+    }
+    public int[] mutate2(){
+        int point1 = (int)(Math.random()*c.length);
+        int point2 = (int)(Math.random()*c.length);
+        int dur = Math.abs(point1-point2);
+        for (int i = 0; i < (dur+1)/2; i++) {
+            if(point1>point2){
+                    int temp = c[point2+i];
+                    c[point2+i] = c[point1-i];
+                    c[point1-i] = temp;
+            }
+            if(point2>point1){
+                int temp = c[point1+i];
+                c[point1+i] = c[point2-i];
+                c[point2-i] = temp;
+            }
+
+
+
+        }
+        return c;
     }
 }

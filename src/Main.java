@@ -10,7 +10,8 @@ public class Main {
         int dif = score1 -score2;
         int count = 0;
 //        while(dif>=5 || count<20){
-        for (int i = 0; i < 20000000; i++) {
+
+        for (int i = 0; i < 2000000; i++) {
 //            System.out.println("j");
 
 
@@ -22,6 +23,7 @@ public class Main {
 //            System.out.println(dif);
             count++;
         }
+//        }
         System.out.println(score2);
 //        }
 
