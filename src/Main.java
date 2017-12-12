@@ -3,30 +3,17 @@
  */
 public class Main {
     public static void main(String[] args) {
-//        System.out.println("o");
         Population p = new Population(10);
-        int score1 = 0;
-        int score2 = 0;
-        int dif = score1 -score2;
-        int count = 0;
-//        while(dif>=5 || count<20){
-
-        for (int i = 0; i < 2000000; i++) {
-//            System.out.println("j");
-
-
-            score1 = p.getChromosomes().get(p.getChromosomes().size()-1).calcCost();
-//            System.out.println(score1);
+        int score = 0;
+        for (int i = 0; i < 100000; i++) {
             p.runGen();
-            score2 = p.getChromosomes().get(p.getChromosomes().size()-1).calcCost();
-            dif = score1 - score2;
-//            System.out.println(dif);
-            count++;
-        }
-//        }
-        System.out.println(score2);
-//        }
+            score = p.getChromosomes().get(p.getChromosomes().size() - 1).calcCost();
+            //System.out.println(score);
 
+        }
+        System.out.println(score);
 
     }
+
+
 }
