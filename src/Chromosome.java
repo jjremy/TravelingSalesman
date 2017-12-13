@@ -26,9 +26,9 @@ public class Chromosome {
 
 
     public int calcCost() {
-//        if (cost != -1) {
-//            return cost;
-//        }
+        if (cost != -1) {
+            return cost;
+        }
         int total = 0;
         for (int i = 0; i < c.length - 1; i++) {
             total += Population.distances[c[i]][c[i + 1]];
